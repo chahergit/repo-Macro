@@ -1,23 +1,39 @@
 /**
-  **************************************************************************
+  ****************************************************************************
   * @file    main.c
-  * @author  CHAHER KHLIFI
+  * @author  Chaher khlifi
   * @brief   Macros 
   * @version V1.0.0
-  * @date    26-10-2022
+  * @date    25-10-2022
   *****************************************************************************/
 /* Includes ------------------------------------------------------------------*/
-/* Macros --------------------------------------------------------------------*/
 
-//#define INTEL
-#define OTHERS
-// MACROS functions(SOM, MIN, MUL, MAX)
-#define SOM(a,b)  (a+b)
-#define MIN(a, b) ((a) < (b) ? (a) : (b))
-#define MUL(a, b) (a*b)
-#define MAX(a, b) ((a) < (b) ? (b) : (a))
 /* Private function prototypes -----------------------------------------------*/
+
+/* Macros --------------------------------------------------------------------*/
+#define INTEL 1 
+//#define OTHERS
+#define NOINTEL 0
+#define a 1
+#define b 2
+// Define an addition equation a+b=3
+#define __ADD(x,y) (INTEL)?(x+y):(x*y)
+//Find the minimum value that is a = 1
+#define __MIN(x,y) (INTEL)?((x<y)? x: y):((x>y)? x: y)
+//Define a multiplicatin equation a*b=2
+#define __MUL(x,y) (NOINTEL)?(x+y):(x*y)
+//Find the maximum value that is b= 2
+#define __MAX(x,y) (NOINTEL)?((x<y)? x: y):((x>y)? x: y)
+
 /* Private functions ---------------------------------------------------------*/
+
+int Func_Som(int A,int B){
+  return(A+B);
+}
+
+int Func_Som2(void){
+  return(a+b);
+}
 
 /**
   * @brief  Main program
@@ -25,28 +41,16 @@
   * @retval None
   */
 int main(void)
-{  //variable declaration
- int a=10, b=20; 
-  
-  // Define MACRO SOM:
-#ifdef SOM 
-      int ResultSum = SOM(a,b);
-#endif
-  // Define MACRO MIN:
-#ifdef MIN
-      int ResultMin = MIN(a,b);
-#endif
-     // Define MACRO MUL:
-#ifdef MUL
-      int ResultMul = MUL(a,b);
-#endif
-     // Define MACRO MAX:
-#ifdef MAX
-      int ResultMax = MAX(a,b);
-#endif     
-  while(1)
-  {
-  }
+{ 
+  // call the macros functions
+  int som_macro = __ADD(a,b);
+  int callmax_min = __MIN(a,b);
+  int mul_macro = __MUL(a,b);
+  int callmax_max = __MAX(a,b);
+  //int som_function1 = Func_Som(a,b);
+  //int som_function2 = Func_Som2(); 
+  while (1)
+  {}
 }
 
 /**************************************END OF FILE**************************************/
